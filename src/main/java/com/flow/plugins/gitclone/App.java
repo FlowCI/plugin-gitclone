@@ -34,9 +34,13 @@ public class App {
     private final static String PLUGIN_GIT_URL = "PLUGIN_GIT_URL";
 
     public static void main(String[] args) {
-        System.out.println("================");
 
+        // init environments
         initSettings();
+
+        // download rsa zip
+
+        // git clone
 
     }
 
