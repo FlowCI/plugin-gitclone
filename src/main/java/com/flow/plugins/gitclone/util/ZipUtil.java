@@ -16,7 +16,7 @@
 
 package com.flow.plugins.gitclone.util;
 
-import com.google.common.base.Charsets;
+import com.flow.plugins.gitclone.App;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
@@ -41,7 +41,7 @@ public class ZipUtil {
 
                 int length = 0;
                 while ((length = zis.read(buffer)) > 0) {
-                    content.append(new String(buffer, 0, length, Charsets.UTF_8));
+                    content.append(new String(buffer, 0, length, App.DEFAULT_CHARSET));
                 }
             }
 

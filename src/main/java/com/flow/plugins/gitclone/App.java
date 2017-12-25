@@ -16,14 +16,17 @@
 
 package com.flow.plugins.gitclone;
 
+import com.flow.platform.util.git.GitClient;
+import com.flow.platform.util.git.GitSshClient;
+import com.flow.platform.util.git.JGitBasedClient;
 import com.flow.platform.util.http.HttpClient;
 import com.flow.platform.util.http.HttpResponse;
 import com.flow.plugins.gitclone.domain.Setting;
 import com.flow.plugins.gitclone.exception.PluginException;
 import com.flow.plugins.gitclone.util.ZipUtil;
-import com.google.common.base.Charsets;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,6 +36,8 @@ import java.util.zip.ZipInputStream;
  * @author yh@fir.im
  */
 public class App {
+
+    public final static Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
     private final static String PLUGIN_GIT_BRANCH = "PLUGIN_GIT_BRANCH";
 
@@ -58,6 +63,7 @@ public class App {
 
         // git clone
 
+
     }
 
     private static void initSettings() {
@@ -79,11 +85,13 @@ public class App {
                 Path path = Paths.get(Setting.getInstance().getPluginGitWorkspace(), RSA_FOLDER);
                 Files.createDirectories(path);
 
-                Files.write(path, content.getBytes(Charsets.UTF_8));
+                Files.write(path, content.getBytes(DEFAULT_CHARSET));
 
             } catch (IOException e) {
                 throw new PluginException("Download Rsa error " + e.getMessage());
             }
         });
     }
+
+
 }
