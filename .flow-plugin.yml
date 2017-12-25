@@ -1,0 +1,27 @@
+name: Git-Clone
+properties:
+  - name: PLUGIN_API
+    type: string
+    required: true
+
+  - name: PLUGIN_TOKEN
+    type: string
+    required: true
+
+  - name: PLUGIN_GIT_URL
+    type: string
+    required: true
+
+  - name: PLUGIN_GIT_BRANCH
+    type: string
+    required: true
+
+  - name: PLUGIN_GIT_WORKSPACE
+    type: string
+    required: true
+
+
+run: |
+
+build: |
+  mvn clean install -DskipTests=true
