@@ -16,7 +16,18 @@
 
 package com.flow.plugins.gitclone;
 
+import com.flow.platform.util.http.HttpClient;
+import com.flow.platform.util.http.HttpResponse;
 import com.flow.plugins.gitclone.domain.Setting;
+import com.flow.plugins.gitclone.exception.PluginException;
+import com.flow.plugins.gitclone.util.ZipUtil;
+import com.google.common.base.Charsets;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.zip.ZipInputStream;
 
 /**
  * @author yh@fir.im
@@ -33,12 +44,17 @@ public class App {
 
     private final static String PLUGIN_GIT_URL = "PLUGIN_GIT_URL";
 
+    private final static String RSA_FOLDER = "rsa";
+
+    private final static String RSA_ZIP = "rsa.zip";
+
     public static void main(String[] args) {
 
         // init environments
         initSettings();
 
         // download rsa zip
+        downloadRsa(Setting.getInstance().getPluginApi());
 
         // git clone
 
@@ -50,5 +66,24 @@ public class App {
         Setting.getInstance().setPluginGitWorkspace(System.getenv(PLUGIN_GIT_WORKSPACE));
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
         Setting.getInstance().setPluginApi(System.getenv(PLUGIN_API));
+    }
+
+    private static void downloadRsa(String url) {
+
+        HttpClient.build(url).bodyAsStream((HttpResponse<InputStream> item) -> {
+            try {
+                ZipInputStream zipInputStream = new ZipInputStream(item.getBody());
+
+                String content = ZipUtil.readZipFile(zipInputStream);
+
+                Path path = Paths.get(Setting.getInstance().getPluginGitWorkspace(), RSA_FOLDER);
+                Files.createDirectories(path);
+
+                Files.write(path, content.getBytes(Charsets.UTF_8));
+
+            } catch (IOException e) {
+                throw new PluginException("Download Rsa error " + e.getMessage());
+            }
+        });
     }
 }
