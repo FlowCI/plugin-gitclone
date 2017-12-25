@@ -16,12 +16,35 @@
 
 package com.flow.plugins.gitclone;
 
+import com.flow.plugins.gitclone.domain.Setting;
+
 /**
  * @author yh@fir.im
  */
 public class App {
 
+    private final static String PLUGIN_GIT_BRANCH = "PLUGIN_GIT_BRANCH";
+
+    private final static String PLUGIN_GIT_WORKSPACE = "PLUGIN_GIT_WORKSPACE";
+
+    private final static String PLUGIN_TOKEN = "PLUGIN_TOKEN";
+
+    private final static String PLUGIN_API = "PLUGIN_API";
+
+    private final static String PLUGIN_GIT_URL = "PLUGIN_GIT_URL";
+
     public static void main(String[] args) {
         System.out.println("================");
+
+        initSettings();
+
+    }
+
+    private static void initSettings() {
+        Setting.getInstance().setPluginGitBranch(System.getenv(PLUGIN_GIT_BRANCH));
+        Setting.getInstance().setPluginGitUrl(System.getenv(PLUGIN_GIT_URL));
+        Setting.getInstance().setPluginGitWorkspace(System.getenv(PLUGIN_GIT_WORKSPACE));
+        Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
+        Setting.getInstance().setPluginApi(System.getenv(PLUGIN_API));
     }
 }
