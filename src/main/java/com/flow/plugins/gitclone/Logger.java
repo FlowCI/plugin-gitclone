@@ -34,7 +34,16 @@ public class Logger {
         logger.trace(message);
     }
 
+    public void info(String message) {
+        logger.info(message);
+    }
+
     public void traceMarker(String method, String message, Object... params) {
         logger.trace(MarkerManager.getMarker(method), String.format(message, params));
     }
+
+    public void warn(String message) {
+        logger.warn(message);
+    }
+
 }

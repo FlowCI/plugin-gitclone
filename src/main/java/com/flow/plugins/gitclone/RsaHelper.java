@@ -25,11 +25,14 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 /**
  * @author yh@fir.im
  */
 public class RsaHelper {
+
+    private final static Logger LOGGER = new Logger(RsaHelper.class);
 
     private final static String RSA_FOLDER = "rsa";
 
@@ -43,10 +46,16 @@ public class RsaHelper {
     }
 
     public void downloadRsaAndUnzip(String url, Path destPath) {
+        LOGGER.trace("Start download Rsa from url - " + url);
         HttpClient.build(url).get().bodyAsStream((HttpResponse<InputStream> item) -> {
             try {
 
                 Files.createDirectories(Paths.get(destPath.toString(), RSA_FOLDER));
+
+                if(Objects.isNull(item.getBody())){
+                    LOGGER.trace("Not found Zip");
+                    return;
+                }
 
                 ZipUtil.readZipFile(item.getBody(), Paths.get(destPath.toString(), RSA_FOLDER));
 

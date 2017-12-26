@@ -58,7 +58,7 @@ public class App {
         // init environments
         initSettings();
 
-        System.out.println(CommonUtil.showJfigletMessage("GIT CLONE FINISH"));
+        System.out.println(CommonUtil.showJfigletMessage("GIT CLONE START"));
 
         // download rsa zip
         rsaHelper
@@ -96,16 +96,16 @@ public class App {
 
     private static void initSettings() {
 
-        LOGGER.trace("GIT_BRANCH: " + gitBranch());
+        LOGGER.trace("PLUGIN_GIT_BRANCH: " + gitBranch());
         Setting.getInstance().setPluginGitBranch(gitBranch());
 
-        LOGGER.trace("GIT_URL: " + gitUrl());
+        LOGGER.trace("PLUGIN_GIT_URL: " + gitUrl());
         Setting.getInstance().setPluginGitUrl(gitUrl());
 
-        LOGGER.trace("GIT_WORKSPACE:" + gitWorkspace());
+        LOGGER.trace("PLUGIN_GIT_WORKSPACE:" + gitWorkspace());
         Setting.getInstance().setPluginGitWorkspace(gitWorkspace());
 
-        LOGGER.trace("GIT_PLUGIN_API:" + getPluginApi());
+        LOGGER.trace("PLUGIN_API:" + getPluginApi());
         Setting.getInstance().setPluginApi(getPluginApi());
 
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
@@ -140,7 +140,7 @@ public class App {
     private static String getPluginApi() {
         String pluginApi = System.getenv(PLUGIN_API);
         if (Strings.isNullOrEmpty(pluginApi)) {
-            System.out.println("PLUGIN_API is required");
+            LOGGER.warn("PLUGIN_API is required");
             throw new PluginException("PLUGIN_API is required");
         }
 
