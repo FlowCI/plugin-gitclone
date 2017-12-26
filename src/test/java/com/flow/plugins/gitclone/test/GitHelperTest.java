@@ -17,6 +17,7 @@
 package com.flow.plugins.gitclone.test;
 
 import com.flow.plugins.gitclone.GitHelper;
+import com.flow.plugins.gitclone.exception.PluginException;
 import java.io.File;
 import java.io.IOException;
 import org.junit.Assert;
@@ -52,7 +53,7 @@ public class GitHelperTest extends TestBase {
     }
 
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = PluginException.class)
     public void should_detect_git_success() throws IOException {
 
         File tmpFolder = tmp.newFolder();

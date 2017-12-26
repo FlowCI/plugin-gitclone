@@ -31,6 +31,7 @@ import java.nio.file.Paths;
  */
 public class App {
 
+    private final static Logger LOGGER = new Logger(App.class);
 
     public final static Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
@@ -54,10 +55,10 @@ public class App {
 
     public static void main(String[] args) {
 
-        CommonUtil.showJfigletMessage("GIT CLONE FINISH");
-
         // init environments
         initSettings();
+
+        System.out.println(CommonUtil.showJfigletMessage("GIT CLONE FINISH"));
 
         // download rsa zip
         rsaHelper
@@ -73,7 +74,7 @@ public class App {
             workspacePath()
         );
 
-        CommonUtil.showJfigletMessage("GIT CLONE FINISH");
+        System.out.println(CommonUtil.showJfigletMessage("GIT CLONE FINISH"));
     }
 
     private static String rsaDownloadUrl() {
@@ -95,16 +96,16 @@ public class App {
 
     private static void initSettings() {
 
-        System.out.println("GIT_BRANCH: " + gitBranch());
+        LOGGER.trace("GIT_BRANCH: " + gitBranch());
         Setting.getInstance().setPluginGitBranch(gitBranch());
 
-        System.out.println("GIT_URL: " + gitUrl());
+        LOGGER.trace("GIT_URL: " + gitUrl());
         Setting.getInstance().setPluginGitUrl(gitUrl());
 
-        System.out.println("GIT_WORKSPACE:" + gitWorkspace());
+        LOGGER.trace("GIT_WORKSPACE:" + gitWorkspace());
         Setting.getInstance().setPluginGitWorkspace(gitWorkspace());
 
-        System.out.println("GIT_PLUGIN_API:" + getPluginApi());
+        LOGGER.trace("GIT_PLUGIN_API:" + getPluginApi());
         Setting.getInstance().setPluginApi(getPluginApi());
 
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));

@@ -25,9 +25,9 @@ import org.eclipse.jgit.lib.ProgressMonitor;
  */
 public class GitHelper {
 
-    public void fetchCode(String gitUrl, Path privateKeyPath, String branch, Path targetFolder) {
-        //            gitSshClient.clone(branch, Collections.emptySet(), new CloneMonitor());
+    private final static Logger LOGGER = new Logger(GitHelper.class);
 
+    public void fetchCode(String gitUrl, Path privateKeyPath, String branch, Path targetFolder) {
         GitUtil.gitClone(gitUrl, privateKeyPath, branch, targetFolder, new CloneMonitor());
     }
 
@@ -35,12 +35,12 @@ public class GitHelper {
 
         @Override
         public void start(int i) {
-            System.out.println("Start Fetch Code");
+            LOGGER.trace("Start Fetch Code");
         }
 
         @Override
         public void beginTask(String s, int i) {
-            System.out.println(s);
+            LOGGER.trace(s);
         }
 
         @Override
