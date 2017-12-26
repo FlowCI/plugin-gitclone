@@ -11,15 +11,26 @@
 
   <properties>
     <jfiglet.version>0.0.3</jfiglet.version>
+    <junit.version>4.12</junit.version>
   </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>com.github.lalyos</groupId>
       <artifactId>jfiglet</artifactId>
       <version>${jfiglet.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
+
 
   <build>
     <resources>
