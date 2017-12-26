@@ -96,11 +96,20 @@ public class App {
     }
 
     private static void initSettings() {
+
+        LOGGER.info("GIT_BRANCH: " + gitBranch());
         Setting.getInstance().setPluginGitBranch(gitBranch());
+
+        LOGGER.info("GIT_URL: " + gitUrl());
         Setting.getInstance().setPluginGitUrl(gitUrl());
+
+        LOGGER.info("GIT_WORKSPACE:" + gitWorkspace());
         Setting.getInstance().setPluginGitWorkspace(gitWorkspace());
-        Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
+
+        LOGGER.info("GIT_PLUGIN_API:" + getPluginApi());
         Setting.getInstance().setPluginApi(getPluginApi());
+
+        Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
     }
 
     private static String gitBranch() {
