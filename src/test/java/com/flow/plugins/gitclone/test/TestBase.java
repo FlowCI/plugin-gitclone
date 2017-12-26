@@ -51,7 +51,7 @@ public class TestBase {
         wiremock.resetAll();
         wiremock.stubFor(
             get(urlEqualTo("/credentials/rsa/download"))
-                .willReturn(aResponse().withStatus(200).withBody(getResource("rsa.zip"))));
+                .willReturn(aResponse().withStatus(200).withBody(getResource("2048.zip"))));
     }
 
     protected String getResource(String fileName) throws IOException {
