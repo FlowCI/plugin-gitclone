@@ -16,16 +16,60 @@
 
 package com.flow.plugins.gitclone.test;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
+
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.google.common.io.Files;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.apache.commons.io.Charsets;
+import org.junit.FixMethodOrder;
+import org.junit.Rule;
+import org.junit.runners.MethodSorters;
 
 /**
  * @author yh@firim
  */
+@FixMethodOrder(MethodSorters.JVM)
 public class TestBase {
+
+    @Rule
+    public WireMockRule wiremock = new WireMockRule(8080);
+
+    {
+        try {
+            stubDemo();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void stubDemo() throws IOException {
+        wiremock.resetAll();
+//        wiremock.stubFor(
+//            get(urlEqualTo("/credentials/rsa/download"))
+//                .willReturn(aResponse().withStatus(200).withBody(getResource("rsa.zip"))));
+
+        ClassLoader classLoader = TestBase.class.getClassLoader();
+        URL resource = classLoader.getResource("rsa.zip");
+        File path = new File(resource.getFile());
+
+        try (InputStream inputStream = new FileInputStream(path)) {
+            wiremock.stubFor(
+                get(urlEqualTo("/credentials/rsa/download"))
+                    .willReturn(aResponse().withBody(org.apache.commons.io.IOUtils.toByteArray(inputStream))));
+        } catch (Throwable throwable) {
+        }
+    }
 
     protected String getResource(String fileName) throws IOException {
         Path path = Paths.get(GitHelperTest.class.getClassLoader().getResource(fileName).getPath());

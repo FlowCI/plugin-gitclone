@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
@@ -41,22 +42,25 @@ public class ZipUtil {
     /**
      * readZipFile
      */
-    public static String readZipFile(InputStream zippedStream) throws IOException {
+    public static Path readZipFile(InputStream zippedStream, Path destFolder) throws IOException {
         try (ZipInputStream zis = new ZipInputStream(zippedStream)) {
-            StringBuilder content = new StringBuilder();
 
             ZipEntry ze;
-            byte[] buffer = new byte[2048];
 
             while ((ze = zis.getNextEntry()) != null) {
+                byte[] buffer = new byte[2048];
+                StringBuilder content = new StringBuilder();
 
                 int length = 0;
                 while ((length = zis.read(buffer)) > 0) {
                     content.append(new String(buffer, 0, length, App.DEFAULT_CHARSET));
                 }
+
+                Files.write(Paths.get(destFolder.toString(), ze.getName()),
+                    content.toString().getBytes(App.DEFAULT_CHARSET));
             }
 
-            return content.toString();
+            return destFolder;
         }
     }
 

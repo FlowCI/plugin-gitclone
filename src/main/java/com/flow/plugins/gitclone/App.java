@@ -51,12 +51,15 @@ public class App {
 
     public static void main(String[] args) {
 
+        CommonUtil.showJfigletMessage("GIT CLONE FINISH");
+
         // init environments
         initSettings();
 
         // download rsa zip
         rsaHelper
-            .downloadRsaAndUnzip(Setting.getInstance().getPluginApi(),
+            .downloadRsaAndUnzip(
+                rsaDownloadUrl(),
                 workspacePath());
 
         // git clone
@@ -68,6 +71,10 @@ public class App {
         );
 
         CommonUtil.showJfigletMessage("GIT CLONE FINISH");
+    }
+
+    private static String rsaDownloadUrl() {
+        return Setting.getInstance().getPluginApi() + "/credentials/" + System.getenv("FLOW_NAME") + "/download";
     }
 
     private static Path workspacePath() {

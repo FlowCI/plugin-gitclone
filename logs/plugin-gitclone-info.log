@@ -156,3 +156,9 @@
 2017-12-26 11:50:51.902 [TRACE] GitHelper - Resolving deltas
 2017-12-26 11:50:52.188 [TRACE] GitHelper - Updating references
 2017-12-26 11:50:52.298 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 12:43:22.004 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
+2017-12-26 12:45:25.227 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
+2017-12-26 12:57:19.290 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
+2017-12-26 13:00:03.671 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
+2017-12-26 13:00:28.053 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
+2017-12-26 13:15:49.329 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue

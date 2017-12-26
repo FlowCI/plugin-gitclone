@@ -12,6 +12,7 @@
   <properties>
     <jfiglet.version>0.0.3</jfiglet.version>
     <junit.version>4.12</junit.version>
+    <wiremock.version>2.6.0</wiremock.version>
   </properties>
 
   <dependencies>
@@ -26,6 +27,13 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock</artifactId>
+      <version>${wiremock.version}</version>
       <scope>test</scope>
     </dependency>
 

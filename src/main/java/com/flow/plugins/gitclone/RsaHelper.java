@@ -19,7 +19,6 @@ package com.flow.plugins.gitclone;
 import com.flow.platform.util.Logger;
 import com.flow.platform.util.http.HttpClient;
 import com.flow.platform.util.http.HttpResponse;
-import com.flow.plugins.gitclone.domain.Setting;
 import com.flow.plugins.gitclone.exception.PluginException;
 import com.flow.plugins.gitclone.util.ZipUtil;
 import java.io.IOException;
@@ -27,7 +26,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.zip.ZipInputStream;
 
 /**
  * @author yh@fir.im
@@ -48,8 +46,17 @@ public class RsaHelper {
     }
 
     public void downloadRsaAndUnzip(String url, Path destPath) {
-        downloadRsaZip(url);
-        unzipRsa(destPath);
+        HttpClient.build(url).get().bodyAsStream((HttpResponse<InputStream> item) -> {
+            try {
+
+                Files.createDirectories(Paths.get(destPath.toString(), RSA_FOLDER));
+
+                ZipUtil.readZipFile(item.getBody(), Paths.get(destPath.toString(), RSA_FOLDER));
+
+            } catch (IOException e) {
+                throw new PluginException("Download Rsa error " + e.getMessage());
+            }
+        });
     }
 
     public Path privateKeyPath(Path destPath) {
@@ -61,38 +68,4 @@ public class RsaHelper {
         Path path = Paths.get(destPath.toString(), RSA_FOLDER, RSA_PUBLIC_NAME);
         return path;
     }
-
-    private void downloadRsaZip(String url) {
-        HttpClient.build(url).bodyAsStream((HttpResponse<InputStream> item) -> {
-            try {
-                ZipInputStream zipInputStream = new ZipInputStream(item.getBody());
-
-                String content = ZipUtil.readZipFile(zipInputStream);
-
-                Path path = Paths.get(Setting.getInstance().getPluginGitWorkspace(), RSA_ZIP);
-                Files.createDirectories(path);
-
-                Files.write(path, content.getBytes(App.DEFAULT_CHARSET));
-
-            } catch (IOException e) {
-                throw new PluginException("Download Rsa error " + e.getMessage());
-            }
-        });
-    }
-
-    private void unzipRsa(Path destPath) {
-
-        try {
-            Path path = Paths.get(destPath.toString(), RSA_FOLDER);
-            if (path.toFile().exists()) {
-                ZipUtil.unzip(path, path.getParent());
-            } else {
-                LOGGER.traceMarker("UnzipRsa", "Not found zip file continue");
-            }
-        } catch (IOException e) {
-            LOGGER.traceMarker("UnzipRsa", "Unzip File happens some error " + e.getMessage());
-        }
-
-    }
-
 }
