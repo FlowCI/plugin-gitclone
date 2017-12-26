@@ -16,9 +16,6 @@
 
 package com.flow.plugins.gitclone;
 
-import com.flow.platform.util.git.GitClient;
-import com.flow.platform.util.git.GitSshClient;
-import com.flow.platform.util.git.JGitBasedClient;
 import com.flow.platform.util.http.HttpClient;
 import com.flow.platform.util.http.HttpResponse;
 import com.flow.plugins.gitclone.domain.Setting;
@@ -63,7 +60,6 @@ public class App {
 
         // git clone
 
-
     }
 
     private static void initSettings() {
@@ -76,6 +72,9 @@ public class App {
 
     private static void downloadRsa(String url) {
 
+    }
+
+    private static void downloadRsaZip(String url) {
         HttpClient.build(url).bodyAsStream((HttpResponse<InputStream> item) -> {
             try {
                 ZipInputStream zipInputStream = new ZipInputStream(item.getBody());
