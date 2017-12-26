@@ -16,7 +16,6 @@
 
 package com.flow.plugins.gitclone;
 
-import com.flow.platform.util.Logger;
 import com.flow.plugins.gitclone.exception.PluginException;
 import com.flow.plugins.gitclone.util.HttpClient;
 import com.flow.plugins.gitclone.util.HttpResponse;
@@ -26,6 +25,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.apache.logging.log4j.core.Logger;
 
 /**
  * @author yh@fir.im
@@ -39,8 +39,6 @@ public class RsaHelper {
     private final static String RSA_PRIVATE_NAME = "id_rsa";
 
     private final static String RSA_PUBLIC_NAME = "id_rsa.pub";
-
-    private final static Logger LOGGER = new Logger(RsaHelper.class);
 
     public RsaHelper() {
     }

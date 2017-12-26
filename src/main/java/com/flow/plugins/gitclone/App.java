@@ -16,7 +16,6 @@
 
 package com.flow.plugins.gitclone;
 
-import com.flow.platform.util.Logger;
 import com.flow.plugins.gitclone.domain.Setting;
 import com.flow.plugins.gitclone.exception.PluginException;
 import com.flow.plugins.gitclone.util.CommonUtil;
@@ -32,7 +31,6 @@ import java.nio.file.Paths;
  */
 public class App {
 
-    private final static Logger LOGGER = new Logger(App.class);
 
     public final static Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
@@ -97,16 +95,16 @@ public class App {
 
     private static void initSettings() {
 
-        LOGGER.info("GIT_BRANCH: " + gitBranch());
+        System.out.println("GIT_BRANCH: " + gitBranch());
         Setting.getInstance().setPluginGitBranch(gitBranch());
 
-        LOGGER.info("GIT_URL: " + gitUrl());
+        System.out.println("GIT_URL: " + gitUrl());
         Setting.getInstance().setPluginGitUrl(gitUrl());
 
-        LOGGER.info("GIT_WORKSPACE:" + gitWorkspace());
+        System.out.println("GIT_WORKSPACE:" + gitWorkspace());
         Setting.getInstance().setPluginGitWorkspace(gitWorkspace());
 
-        LOGGER.info("GIT_PLUGIN_API:" + getPluginApi());
+        System.out.println("GIT_PLUGIN_API:" + getPluginApi());
         Setting.getInstance().setPluginApi(getPluginApi());
 
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
@@ -141,7 +139,7 @@ public class App {
     private static String getPluginApi() {
         String pluginApi = System.getenv(PLUGIN_API);
         if (Strings.isNullOrEmpty(pluginApi)) {
-            LOGGER.trace("PLUGIN_API is required");
+            System.out.println("PLUGIN_API is required");
             throw new PluginException("PLUGIN_API is required");
         }
 

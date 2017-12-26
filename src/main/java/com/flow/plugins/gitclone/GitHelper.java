@@ -16,12 +16,8 @@
 
 package com.flow.plugins.gitclone;
 
-import com.flow.platform.util.Logger;
-import com.flow.platform.util.git.GitException;
-import com.flow.platform.util.git.GitSshClient;
-import com.flow.plugins.gitclone.exception.PluginException;
+import com.flow.plugins.gitclone.util.GitUtil;
 import java.nio.file.Path;
-import java.util.Collections;
 import org.eclipse.jgit.lib.ProgressMonitor;
 
 /**
@@ -29,30 +25,22 @@ import org.eclipse.jgit.lib.ProgressMonitor;
  */
 public class GitHelper {
 
-    private final static Logger LOGGER = new Logger(GitHelper.class);
-
     public void fetchCode(String gitUrl, Path privateKeyPath, String branch, Path targetFolder) {
-        GitSshClient gitSshClient = new GitSshClient(gitUrl, privateKeyPath, targetFolder);
+        //            gitSshClient.clone(branch, Collections.emptySet(), new CloneMonitor());
 
-        try {
-            gitSshClient.clone(branch, Collections.emptySet(), new CloneMonitor());
-            LOGGER.trace("Finish Fetch Code");
-        } catch (GitException e) {
-            LOGGER.trace("Fetch Code Error " + e.getMessage());
-            throw new PluginException("Fetch Code Error " + e.getMessage());
-        }
+        GitUtil.gitClone(gitUrl, privateKeyPath, branch, targetFolder, new CloneMonitor());
     }
 
     private class CloneMonitor implements ProgressMonitor {
 
         @Override
         public void start(int i) {
-            LOGGER.trace("Start Fetch Code");
+            System.out.println("Start Fetch Code");
         }
 
         @Override
         public void beginTask(String s, int i) {
-            LOGGER.trace(s);
+            System.out.println(s);
         }
 
         @Override
