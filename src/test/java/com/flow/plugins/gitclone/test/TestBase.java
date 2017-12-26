@@ -18,17 +18,11 @@ package com.flow.plugins.gitclone.test;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.google.common.io.Files;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.apache.commons.io.Charsets;
@@ -55,20 +49,9 @@ public class TestBase {
 
     protected void stubDemo() throws IOException {
         wiremock.resetAll();
-//        wiremock.stubFor(
-//            get(urlEqualTo("/credentials/rsa/download"))
-//                .willReturn(aResponse().withStatus(200).withBody(getResource("rsa.zip"))));
-
-        ClassLoader classLoader = TestBase.class.getClassLoader();
-        URL resource = classLoader.getResource("rsa.zip");
-        File path = new File(resource.getFile());
-
-        try (InputStream inputStream = new FileInputStream(path)) {
-            wiremock.stubFor(
-                get(urlEqualTo("/credentials/rsa/download"))
-                    .willReturn(aResponse().withBody(org.apache.commons.io.IOUtils.toByteArray(inputStream))));
-        } catch (Throwable throwable) {
-        }
+        wiremock.stubFor(
+            get(urlEqualTo("/credentials/rsa/download"))
+                .willReturn(aResponse().withStatus(200).withBody(getResource("rsa.zip"))));
     }
 
     protected String getResource(String fileName) throws IOException {

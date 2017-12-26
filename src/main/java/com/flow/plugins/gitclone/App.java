@@ -20,6 +20,7 @@ import com.flow.platform.util.Logger;
 import com.flow.plugins.gitclone.domain.Setting;
 import com.flow.plugins.gitclone.exception.PluginException;
 import com.flow.plugins.gitclone.util.CommonUtil;
+import com.google.common.base.Strings;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -36,6 +37,10 @@ public class App {
     public final static Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
     private final static String PLUGIN_GIT_BRANCH = "PLUGIN_GIT_BRANCH";
+
+    private final static String FLOW_GIT_BRANCH = "FLOW_GIT_BRANCH";
+
+    private final static String FLOW_GIT_URL = "FLOW_GIT_URL";
 
     private final static String PLUGIN_GIT_WORKSPACE = "PLUGIN_GIT_WORKSPACE";
 
@@ -91,11 +96,48 @@ public class App {
     }
 
     private static void initSettings() {
-        Setting.getInstance().setPluginGitBranch(System.getenv(PLUGIN_GIT_BRANCH));
-        Setting.getInstance().setPluginGitUrl(System.getenv(PLUGIN_GIT_URL));
-        Setting.getInstance().setPluginGitWorkspace(System.getenv(PLUGIN_GIT_WORKSPACE));
+        Setting.getInstance().setPluginGitBranch(gitBranch());
+        Setting.getInstance().setPluginGitUrl(gitUrl());
+        Setting.getInstance().setPluginGitWorkspace(gitWorkspace());
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
-        Setting.getInstance().setPluginApi(System.getenv(PLUGIN_API));
+        Setting.getInstance().setPluginApi(getPluginApi());
     }
+
+    private static String gitBranch() {
+        String branch = System.getenv(PLUGIN_GIT_BRANCH);
+        if (Strings.isNullOrEmpty(branch)) {
+            return System.getenv(FLOW_GIT_BRANCH);
+        }
+
+        return branch;
+    }
+
+    private static String gitUrl() {
+        String gitUrl = System.getenv(PLUGIN_GIT_URL);
+        if (Strings.isNullOrEmpty(gitUrl)) {
+            return System.getenv(FLOW_GIT_URL);
+        }
+
+        return gitUrl;
+    }
+
+    private static String gitWorkspace() {
+        String workspace = System.getenv(PLUGIN_GIT_WORKSPACE);
+        if (Strings.isNullOrEmpty(workspace)) {
+            return System.getenv("HOME");
+        }
+        return workspace;
+    }
+
+    private static String getPluginApi() {
+        String pluginApi = System.getenv(PLUGIN_API);
+        if (Strings.isNullOrEmpty(pluginApi)) {
+            LOGGER.trace("PLUGIN_API is required");
+            throw new PluginException("PLUGIN_API is required");
+        }
+
+        return pluginApi;
+    }
+
 
 }

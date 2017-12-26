@@ -162,3 +162,59 @@
 2017-12-26 13:00:03.671 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
 2017-12-26 13:00:28.053 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
 2017-12-26 13:15:49.329 [TRACE] RsaHelper:UnzipRsa - Not found zip file continue
+2017-12-26 14:03:31.793 [TRACE] GitHelper - Pull
+2017-12-26 14:03:36.100 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 14:03:36.102 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 14:03:36.103 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 14:03:36.383 [TRACE] GitHelper - Receiving objects
+2017-12-26 14:03:36.394 [TRACE] GitHelper - Resolving deltas
+2017-12-26 14:03:36.681 [TRACE] GitHelper - Updating references
+2017-12-26 14:03:36.771 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 14:06:02.385 [TRACE] GitHelper - Pull
+2017-12-26 14:06:06.347 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 14:06:06.348 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 14:06:06.349 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 14:06:06.674 [TRACE] GitHelper - Receiving objects
+2017-12-26 14:06:06.685 [TRACE] GitHelper - Resolving deltas
+2017-12-26 14:06:06.963 [TRACE] GitHelper - Updating references
+2017-12-26 14:06:07.053 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 14:07:06.201 [TRACE] GitHelper - Pull
+2017-12-26 14:07:10.620 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 14:07:10.622 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 14:07:10.622 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 14:07:11.292 [TRACE] GitHelper - Receiving objects
+2017-12-26 14:07:11.303 [TRACE] GitHelper - Resolving deltas
+2017-12-26 14:07:11.586 [TRACE] GitHelper - Updating references
+2017-12-26 14:07:11.684 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 14:07:39.286 [TRACE] GitHelper - Pull
+2017-12-26 14:07:43.927 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 14:07:43.928 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 14:07:43.929 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 14:07:44.288 [TRACE] GitHelper - Receiving objects
+2017-12-26 14:07:44.299 [TRACE] GitHelper - Resolving deltas
+2017-12-26 14:07:44.575 [TRACE] GitHelper - Updating references
+2017-12-26 14:07:44.692 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 14:08:07.458 [TRACE] GitHelper - Pull
+2017-12-26 14:08:13.335 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 14:08:13.337 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 14:08:13.337 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 14:08:13.637 [TRACE] GitHelper - Receiving objects
+2017-12-26 14:08:13.648 [TRACE] GitHelper - Resolving deltas
+2017-12-26 14:08:13.934 [TRACE] GitHelper - Updating references
+2017-12-26 14:08:14.051 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 14:09:33.295 [TRACE] GitHelper - Pull
+2017-12-26 14:09:38.980 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 14:09:38.982 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 14:09:38.982 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 14:09:39.350 [TRACE] GitHelper - Receiving objects
+2017-12-26 14:09:39.367 [TRACE] GitHelper - Resolving deltas
+2017-12-26 14:09:39.648 [TRACE] GitHelper - Updating references
+2017-12-26 14:09:39.754 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 14:11:26.415 [TRACE] GitHelper - Pull
+2017-12-26 14:11:31.667 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 14:11:31.669 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 14:11:31.669 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 14:11:33.922 [TRACE] GitHelper - Receiving objects
+2017-12-26 14:11:33.933 [TRACE] GitHelper - Resolving deltas
+2017-12-26 14:11:34.212 [TRACE] GitHelper - Updating references
+2017-12-26 14:11:34.312 [TRACE] GitHelper - Finish Fetch Code

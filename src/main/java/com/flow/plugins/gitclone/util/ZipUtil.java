@@ -44,11 +44,11 @@ public class ZipUtil {
      */
     public static Path readZipFile(InputStream zippedStream, Path destFolder) throws IOException {
         try (ZipInputStream zis = new ZipInputStream(zippedStream)) {
+            byte[] buffer = new byte[2048];
 
             ZipEntry ze;
 
             while ((ze = zis.getNextEntry()) != null) {
-                byte[] buffer = new byte[2048];
                 StringBuilder content = new StringBuilder();
 
                 int length = 0;
