@@ -1,0 +1,158 @@
+2017-12-26 11:11:49.883 [TRACE] GitHelper - Fetch Code Error Fail to set sparse checkout config
+2017-12-26 11:16:49.531 [TRACE] GitHelper - Pull
+2017-12-26 11:16:52.972 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:16:52.972 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:16:53.162 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:16:53.174 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:16:53.462 [TRACE] GitHelper - Updating references
+2017-12-26 11:17:47.208 [TRACE] GitHelper - Pull
+2017-12-26 11:17:50.713 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:17:50.714 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:17:50.925 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:17:50.941 [TRACE] GitHelper - Pull Code finish
+2017-12-26 11:17:50.942 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:17:50.947 [TRACE] GitHelper - Pull Code finish
+2017-12-26 11:17:51.232 [TRACE] GitHelper - Updating references
+2017-12-26 11:17:51.254 [TRACE] GitHelper - Pull Code finish
+2017-12-26 11:17:51.333 [TRACE] GitHelper - Pull Code finish
+2017-12-26 11:19:22.520 [TRACE] GitHelper - Pull
+2017-12-26 11:19:25.908 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 11:19:25.909 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:19:25.910 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:19:26.114 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:19:26.136 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:19:26.432 [TRACE] GitHelper - Updating references
+2017-12-26 11:19:26.533 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 11:21:50.545 [TRACE] GitHelper - Pull
+2017-12-26 11:21:53.652 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 11:21:53.653 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:21:53.654 [TRACE] GitHelper - 30
+2017-12-26 11:21:53.654 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:21:53.655 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.655 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.656 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.656 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.656 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.657 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.657 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.657 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.657 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.658 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.658 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.658 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.659 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.659 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.659 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.660 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.660 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.660 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.661 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.661 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.661 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.661 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.662 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.663 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.663 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.663 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.664 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.664 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.664 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.665 [TRACE] GitHelper - 0
+2017-12-26 11:21:53.817 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:21:53.822 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.823 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.824 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.824 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.825 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.826 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.826 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.827 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.827 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.828 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.828 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.829 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.832 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.833 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.833 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.834 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.834 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.835 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.835 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.835 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.837 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.837 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.837 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.838 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.838 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.838 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.839 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.839 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.839 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.839 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.840 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:21:53.843 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.844 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.845 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.845 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.846 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.846 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.847 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.847 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.847 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.847 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.848 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.848 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.849 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.849 [TRACE] GitHelper - 1
+2017-12-26 11:21:53.849 [TRACE] GitHelper - 1
+2017-12-26 11:21:54.150 [TRACE] GitHelper - Updating references
+2017-12-26 11:21:54.161 [TRACE] GitHelper - 1
+2017-12-26 11:21:54.165 [TRACE] GitHelper - 1
+2017-12-26 11:21:54.168 [TRACE] GitHelper - 1
+2017-12-26 11:21:54.217 [TRACE] GitHelper - 1
+2017-12-26 11:21:54.273 [TRACE] GitHelper - 1
+2017-12-26 11:21:54.275 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 11:37:44.860 [TRACE] GitHelper - Pull
+2017-12-26 11:37:48.094 [TRACE] GitHelper - Fetch Code Error Fail to pull with specific files: Auth fail
+2017-12-26 11:39:20.143 [TRACE] GitHelper - Pull
+2017-12-26 11:39:23.359 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 11:39:23.361 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:39:23.361 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:39:23.536 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:39:23.549 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:39:23.849 [TRACE] GitHelper - Updating references
+2017-12-26 11:39:23.987 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 11:41:52.539 [TRACE] GitHelper - Pull
+2017-12-26 11:41:55.923 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 11:41:55.925 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:41:55.925 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:41:56.150 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:41:56.189 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:41:56.473 [TRACE] GitHelper - Updating references
+2017-12-26 11:41:56.599 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 11:43:03.479 [TRACE] GitHelper - Pull
+2017-12-26 11:44:05.965 [TRACE] GitHelper - Pull
+2017-12-26 11:44:09.376 [TRACE] GitHelper - Pull
+2017-12-26 11:44:12.624 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 11:44:12.626 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:44:12.627 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:44:14.347 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:44:14.371 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:44:14.658 [TRACE] GitHelper - Updating references
+2017-12-26 11:44:14.779 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 11:47:15.318 [TRACE] GitHelper - Pull
+2017-12-26 11:47:20.380 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 11:47:20.553 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:47:20.554 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:47:22.606 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:47:22.626 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:47:22.904 [TRACE] GitHelper - Updating references
+2017-12-26 11:47:23.006 [TRACE] GitHelper - Finish Fetch Code
+2017-12-26 11:50:47.627 [TRACE] GitHelper - Pull
+2017-12-26 11:50:51.683 [TRACE] GitHelper - Start Fetch Code
+2017-12-26 11:50:51.684 [TRACE] GitHelper - remote: Counting objects
+2017-12-26 11:50:51.685 [TRACE] GitHelper - remote: Compressing objects
+2017-12-26 11:50:51.885 [TRACE] GitHelper - Receiving objects
+2017-12-26 11:50:51.902 [TRACE] GitHelper - Resolving deltas
+2017-12-26 11:50:52.188 [TRACE] GitHelper - Updating references
+2017-12-26 11:50:52.298 [TRACE] GitHelper - Finish Fetch Code

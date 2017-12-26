@@ -38,9 +38,9 @@ public class RsaHelper {
 
     private final static String RSA_ZIP = "rsa.zip";
 
-    private final static String RSA_PRIVATE_NAME = "RSA";
+    private final static String RSA_PRIVATE_NAME = "id_rsa";
 
-    private final static String RSA_PUBLIC_NAME = "RSA";
+    private final static String RSA_PUBLIC_NAME = "id_rsa.pub";
 
     private final static Logger LOGGER = new Logger(RsaHelper.class);
 
