@@ -16,23 +16,22 @@
 
 package com.flow.plugins.gitclone;
 
-import com.flow.platform.util.http.HttpClient;
-import com.flow.platform.util.http.HttpResponse;
+import com.flow.platform.util.Logger;
 import com.flow.plugins.gitclone.domain.Setting;
 import com.flow.plugins.gitclone.exception.PluginException;
-import com.flow.plugins.gitclone.util.ZipUtil;
+import com.flow.plugins.gitclone.util.CommonUtil;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.zip.ZipInputStream;
 
 /**
  * @author yh@fir.im
  */
 public class App {
+
+    private final static Logger LOGGER = new Logger(App.class);
 
     public final static Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
@@ -46,9 +45,9 @@ public class App {
 
     private final static String PLUGIN_GIT_URL = "PLUGIN_GIT_URL";
 
-    private final static String RSA_FOLDER = "rsa";
+    private final static RsaHelper rsaHelper = new RsaHelper();
 
-    private final static String RSA_ZIP = "rsa.zip";
+    private final static GitHelper gitHelper = new GitHelper();
 
     public static void main(String[] args) {
 
@@ -56,10 +55,32 @@ public class App {
         initSettings();
 
         // download rsa zip
-        downloadRsa(Setting.getInstance().getPluginApi());
+        rsaHelper
+            .downloadRsaAndUnzip(Setting.getInstance().getPluginApi(),
+                workspacePath());
 
         // git clone
+        gitHelper.fetchCode(
+            Setting.getInstance().getPluginGitUrl(),
+            rsaHelper.privateKeyPath(workspacePath()),
+            Setting.getInstance().getPluginGitBranch(),
+            workspacePath()
+        );
 
+        CommonUtil.showJfigletMessage("GIT CLONE FINISH");
+    }
+
+    private static Path workspacePath() {
+        try {
+            Path path = Paths.get(Setting.getInstance().getPluginGitWorkspace());
+            if (!path.toFile().exists()) {
+                Files.createDirectories(path);
+            }
+
+            return path;
+        } catch (IOException e) {
+            throw new PluginException("Create workspace is error " + e.getMessage());
+        }
     }
 
     private static void initSettings() {
@@ -69,28 +90,5 @@ public class App {
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
         Setting.getInstance().setPluginApi(System.getenv(PLUGIN_API));
     }
-
-    private static void downloadRsa(String url) {
-
-    }
-
-    private static void downloadRsaZip(String url) {
-        HttpClient.build(url).bodyAsStream((HttpResponse<InputStream> item) -> {
-            try {
-                ZipInputStream zipInputStream = new ZipInputStream(item.getBody());
-
-                String content = ZipUtil.readZipFile(zipInputStream);
-
-                Path path = Paths.get(Setting.getInstance().getPluginGitWorkspace(), RSA_FOLDER);
-                Files.createDirectories(path);
-
-                Files.write(path, content.getBytes(DEFAULT_CHARSET));
-
-            } catch (IOException e) {
-                throw new PluginException("Download Rsa error " + e.getMessage());
-            }
-        });
-    }
-
 
 }
