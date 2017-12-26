@@ -17,9 +17,9 @@
 package com.flow.plugins.gitclone;
 
 import com.flow.platform.util.Logger;
-import com.flow.platform.util.http.HttpClient;
-import com.flow.platform.util.http.HttpResponse;
 import com.flow.plugins.gitclone.exception.PluginException;
+import com.flow.plugins.gitclone.util.HttpClient;
+import com.flow.plugins.gitclone.util.HttpResponse;
 import com.flow.plugins.gitclone.util.ZipUtil;
 import java.io.IOException;
 import java.io.InputStream;
