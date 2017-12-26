@@ -16,34 +16,34 @@
 
 package com.flow.plugins.gitclone;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.MarkerManager;
-
 /**
  * @author yh@firim
  */
 public class Logger {
 
-    private org.apache.logging.log4j.Logger logger = null;
+    private String className;
 
     public Logger(Class clazz) {
-        logger = LogManager.getLogger(clazz.getSimpleName());
+        this.className = clazz.getName();
     }
 
     public void trace(String message) {
-        logger.trace(message);
+        systemShow("trace", message);
     }
 
     public void info(String message) {
-        logger.info(message);
+        systemShow("info", message);
     }
 
     public void traceMarker(String method, String message, Object... params) {
-        logger.trace(MarkerManager.getMarker(method), String.format(message, params));
+        systemShow("trace", message);
     }
 
     public void warn(String message) {
-        logger.warn(message);
+        systemShow("warn", message);
     }
 
+    private void systemShow(String action, String message) {
+        System.out.println("[" + action.toUpperCase() + "]" + this.className + " - " + message);
+    }
 }

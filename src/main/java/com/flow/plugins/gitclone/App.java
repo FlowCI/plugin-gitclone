@@ -19,7 +19,7 @@ package com.flow.plugins.gitclone;
 import com.flow.plugins.gitclone.domain.Setting;
 import com.flow.plugins.gitclone.exception.PluginException;
 import com.flow.plugins.gitclone.util.CommonUtil;
-import com.google.common.base.Strings;
+import com.flow.plugins.gitclone.util.Strings;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
