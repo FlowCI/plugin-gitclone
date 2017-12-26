@@ -52,7 +52,7 @@ public class RsaHelper {
 
                 Files.createDirectories(Paths.get(destPath.toString(), RSA_FOLDER));
 
-                if(Objects.isNull(item.getBody())){
+                if (Objects.isNull(item.getBody())) {
                     LOGGER.trace("Not found Zip");
                     return;
                 }
@@ -67,11 +67,17 @@ public class RsaHelper {
 
     public Path privateKeyPath(Path destPath) {
         Path path = Paths.get(destPath.toString(), RSA_FOLDER, RSA_PRIVATE_NAME);
+        if (!path.toFile().exists()) {
+            return null;
+        }
         return path;
     }
 
     public Path publicKeyPath(Path destPath) {
         Path path = Paths.get(destPath.toString(), RSA_FOLDER, RSA_PUBLIC_NAME);
+        if (!path.toFile().exists()) {
+            return null;
+        }
         return path;
     }
 }

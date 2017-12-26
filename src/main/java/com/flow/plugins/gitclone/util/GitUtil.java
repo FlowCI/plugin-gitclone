@@ -64,7 +64,7 @@ public class GitUtil {
             git
                 .fetch()
                 .setRemote(ORIGIN)
-                .setTransportConfigCallback(createSessionFactory(privateKeyPath.toString()))
+                .setTransportConfigCallback(createSessionFactory(privateKeyPath))
                 .setRefSpecs(new RefSpec("refs/heads/" + branch + ":refs/heads/" + branch))
                 .setProgressMonitor(processMonitor)
                 .call();
@@ -107,7 +107,7 @@ public class GitUtil {
         return repoName;
     }
 
-    private static TransportConfigCallback createSessionFactory(String privateKeyPath) {
+    private static TransportConfigCallback createSessionFactory(Path privateKeyPath) {
         JschConfigSessionFactory sshSessionFactory = new JschConfigSessionFactory() {
             @Override
             protected void configure(Host host, Session session) {
