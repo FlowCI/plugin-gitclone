@@ -17,13 +17,11 @@
 package com.flow.plugins.gitclone;
 
 /**
- * @author yh@fir.im
+ * @author yh@firim
  */
-public interface Logger {
+public class LoggerFactory {
 
-    void trace(String message);
-
-    void info(String message);
-
-    void warn(String message);
+    public static Logger build(Class clazz) {
+        return new SysLogger(clazz);
+    }
 }

@@ -17,13 +17,29 @@
 package com.flow.plugins.gitclone;
 
 /**
- * @author yh@fir.im
+ * @author yh@firim
  */
-public interface Logger {
+public class SysLogger implements Logger {
 
-    void trace(String message);
+    private String className;
 
-    void info(String message);
+    public SysLogger(Class clazz) {
+        this.className = clazz.getName();
+    }
 
-    void warn(String message);
+    public void trace(String message) {
+        systemShow("trace", message);
+    }
+
+    public void info(String message) {
+        systemShow("info", message);
+    }
+
+    public void warn(String message) {
+        systemShow("warn", message);
+    }
+
+    private void systemShow(String action, String message) {
+        System.out.println("[" + action.toUpperCase() + "]" + this.className + " - " + message);
+    }
 }

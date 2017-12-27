@@ -31,7 +31,7 @@ import java.nio.file.Paths;
  */
 public class App {
 
-    private final static Logger LOGGER = new Logger(App.class);
+    private final static Logger LOGGER = LoggerFactory.build(App.class);
 
     public final static Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
@@ -58,7 +58,7 @@ public class App {
         // init environments
         initSettings();
 
-        System.out.println(CommonUtil.showJfigletMessage("GIT CLONE START"));
+        System.out.println(CommonUtil.showJfigletMessage("GIT-CLONE      START"));
 
         // download rsa zip
         rsaHelper
@@ -74,7 +74,7 @@ public class App {
             workspacePath()
         );
 
-        System.out.println(CommonUtil.showJfigletMessage("GIT CLONE FINISH"));
+        System.out.println(CommonUtil.showJfigletMessage("GIT-CLONE      FINISH"));
     }
 
     private static String rsaDownloadUrl() {

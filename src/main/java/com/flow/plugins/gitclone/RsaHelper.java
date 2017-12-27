@@ -32,11 +32,9 @@ import java.util.Objects;
  */
 public class RsaHelper {
 
-    private final static Logger LOGGER = new Logger(RsaHelper.class);
+    private final static Logger LOGGER = LoggerFactory.build(RsaHelper.class);
 
     private final static String RSA_FOLDER = "rsa";
-
-    private final static String RSA_ZIP = "rsa.zip";
 
     private final static String RSA_PRIVATE_NAME = "id_rsa";
 
@@ -63,6 +61,7 @@ public class RsaHelper {
                 throw new PluginException("Download Rsa error " + e.getMessage());
             }
         });
+        LOGGER.trace("Finish download Rsa from url - " + url);
     }
 
     public Path privateKeyPath(Path destPath) {

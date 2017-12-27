@@ -25,10 +25,11 @@ import org.eclipse.jgit.lib.ProgressMonitor;
  */
 public class GitHelper {
 
-    private final static Logger LOGGER = new Logger(GitHelper.class);
+    private final static Logger LOGGER = LoggerFactory.build(GitHelper.class);
 
     public void fetchCode(String gitUrl, Path privateKeyPath, String branch, Path targetFolder) {
         GitUtil.gitClone(gitUrl, privateKeyPath, branch, targetFolder, new CloneMonitor());
+        LOGGER.trace("Finish Fetch Code");
     }
 
     private class CloneMonitor implements ProgressMonitor {
