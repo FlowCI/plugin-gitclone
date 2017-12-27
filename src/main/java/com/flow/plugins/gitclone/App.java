@@ -49,6 +49,12 @@ public class App {
 
     private final static String PLUGIN_GIT_URL = "PLUGIN_GIT_URL";
 
+    private final static String HOME = "HOME";
+
+    private final static String START_MESSAGE = "GIT-CLONE      START";
+
+    private final static String FINISH_MESSAGE = "GIT-CLONE      FINISH";
+
     private final static RsaHelper rsaHelper = new RsaHelper();
 
     private final static GitHelper gitHelper = new GitHelper();
@@ -58,7 +64,7 @@ public class App {
         // init environments
         initSettings();
 
-        System.out.println(CommonUtil.showJfigletMessage("GIT-CLONE      START"));
+        System.out.println(CommonUtil.showJfigletMessage(START_MESSAGE));
 
         // download rsa zip
         rsaHelper
@@ -74,7 +80,7 @@ public class App {
             workspacePath()
         );
 
-        System.out.println(CommonUtil.showJfigletMessage("GIT-CLONE      FINISH"));
+        System.out.println(CommonUtil.showJfigletMessage(FINISH_MESSAGE));
     }
 
     private static String rsaDownloadUrl() {
@@ -94,58 +100,49 @@ public class App {
         }
     }
 
+    /**
+     * init environments
+     */
     private static void initSettings() {
 
-        LOGGER.trace("PLUGIN_GIT_BRANCH: " + gitBranch());
-        Setting.getInstance().setPluginGitBranch(gitBranch());
+        LOGGER.trace("PLUGIN_GIT_BRANCH: " + getEnv(PLUGIN_GIT_BRANCH, FLOW_GIT_BRANCH));
+        Setting.getInstance().setPluginGitBranch(getEnv(PLUGIN_GIT_BRANCH, FLOW_GIT_BRANCH));
 
-        LOGGER.trace("PLUGIN_GIT_URL: " + gitUrl());
-        Setting.getInstance().setPluginGitUrl(gitUrl());
+        LOGGER.trace("PLUGIN_GIT_URL: " + getEnv(PLUGIN_GIT_URL, FLOW_GIT_URL));
+        Setting.getInstance().setPluginGitUrl(getEnv(PLUGIN_GIT_URL, FLOW_GIT_URL));
 
-        LOGGER.trace("PLUGIN_GIT_WORKSPACE:" + gitWorkspace());
-        Setting.getInstance().setPluginGitWorkspace(gitWorkspace());
+        LOGGER.trace("PLUGIN_GIT_WORKSPACE:" + getEnv(PLUGIN_GIT_WORKSPACE, HOME));
+        Setting.getInstance().setPluginGitWorkspace(getEnv(PLUGIN_GIT_WORKSPACE, HOME));
 
-        LOGGER.trace("PLUGIN_API:" + getPluginApi());
-        Setting.getInstance().setPluginApi(getPluginApi());
+        LOGGER.trace("PLUGIN_API:" + getEnv(PLUGIN_API, null));
+        Setting.getInstance().setPluginApi(getEnv(PLUGIN_API, null));
 
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
     }
 
-    private static String gitBranch() {
-        String branch = System.getenv(PLUGIN_GIT_BRANCH);
-        if (Strings.isNullOrEmpty(branch)) {
-            return System.getenv(FLOW_GIT_BRANCH);
+    /**
+     * prefer select preferred value
+     * @param preferred
+     * @param alternative
+     * @return
+     */
+    private static String getEnv(String preferred, String alternative) {
+        String preferredValue, alternativeValue = null;
+        preferredValue = System.getenv(preferred);
+        if (!Strings.isNullOrEmpty(alternative)) {
+            alternativeValue = System.getenv(alternative);
+        }
+        if (Strings.isNullOrEmpty(preferredValue) && Strings.isNullOrEmpty(alternativeValue)) {
+            String message = "Not found value from env : " + preferred + " and " + alternative;
+            LOGGER.warn(message);
+            throw new PluginException(message);
         }
 
-        return branch;
-    }
-
-    private static String gitUrl() {
-        String gitUrl = System.getenv(PLUGIN_GIT_URL);
-        if (Strings.isNullOrEmpty(gitUrl)) {
-            return System.getenv(FLOW_GIT_URL);
+        if (!Strings.isNullOrEmpty(preferredValue)) {
+            return preferredValue;
         }
 
-        return gitUrl;
+        return alternativeValue;
     }
-
-    private static String gitWorkspace() {
-        String workspace = System.getenv(PLUGIN_GIT_WORKSPACE);
-        if (Strings.isNullOrEmpty(workspace)) {
-            return System.getenv("HOME");
-        }
-        return workspace;
-    }
-
-    private static String getPluginApi() {
-        String pluginApi = System.getenv(PLUGIN_API);
-        if (Strings.isNullOrEmpty(pluginApi)) {
-            LOGGER.warn("PLUGIN_API is required");
-            throw new PluginException("PLUGIN_API is required");
-        }
-
-        return pluginApi;
-    }
-
 
 }
