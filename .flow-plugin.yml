@@ -1,0 +1,29 @@
+name: Git-Clone
+properties:
+  - name: PLUGIN_API
+    type: string
+    required: true
+
+  - name: PLUGIN_TOKEN
+    type: string
+    required: false
+
+  - name: PLUGIN_GIT_URL
+    type: string
+    required: false
+
+  - name: PLUGIN_GIT_BRANCH
+    type: string
+    required: false
+
+  - name: PLUGIN_GIT_WORKSPACE
+    type: string
+    required: false
+
+image: flowci/plugin-environment:latest
+
+run: |
+  java -jar ./flow-git-clone.jar
+
+build: |
+  mvn clean install -DskipTests=true
