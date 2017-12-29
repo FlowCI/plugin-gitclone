@@ -82,7 +82,7 @@ public class GitUtil {
         return targetFolder;
     }
 
-    private static Path getGitPath(String gitUrl, Path targetFolder) {
+    public static Path getGitPath(String gitUrl, Path targetFolder) {
         return Paths.get(targetFolder.toString(), validateGitAndGetName(gitUrl));
     }
 

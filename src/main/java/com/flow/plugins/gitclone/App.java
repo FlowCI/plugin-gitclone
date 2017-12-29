@@ -19,12 +19,17 @@ package com.flow.plugins.gitclone;
 import com.flow.plugins.gitclone.domain.Setting;
 import com.flow.plugins.gitclone.exception.PluginException;
 import com.flow.plugins.gitclone.util.CommonUtil;
+import com.flow.plugins.gitclone.util.GitUtil;
 import com.flow.plugins.gitclone.util.Strings;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author yh@fir.im
@@ -49,6 +54,12 @@ public class App {
 
     private final static String PLUGIN_GIT_URL = "PLUGIN_GIT_URL";
 
+    private final static String PLUGIN_GIT_RSA_PUB = "PLUGIN_GIT_RSA_PUB";
+
+    private final static String PLUGIN_GIT_RSA_PRI = "PLUGIN_GIT_RSA_PRI";
+
+    private final static String PLUGIN_GIT_PROJECT = "PLUGIN_GIT_PROJECT";
+
     private final static String HOME = "HOME";
 
     private final static String START_MESSAGE = "GIT-CLONE      START";
@@ -58,6 +69,8 @@ public class App {
     private final static RsaHelper rsaHelper = new RsaHelper();
 
     private final static GitHelper gitHelper = new GitHelper();
+
+    private final static String TMP_FOLDER = "/tmp";
 
     public static void main(String[] args) {
 
@@ -79,6 +92,9 @@ public class App {
             Setting.getInstance().getPluginGitBranch(),
             workspacePath()
         );
+
+        // export env
+        exportEnv();
 
         System.out.println(CommonUtil.showJfigletMessage(FINISH_MESSAGE));
     }
@@ -120,6 +136,26 @@ public class App {
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
     }
 
+    private static void exportEnv() {
+        Map<String, String> envs = new HashMap<>();
+        envs.put(PLUGIN_GIT_BRANCH, getEnv(PLUGIN_GIT_BRANCH, FLOW_GIT_BRANCH));
+        envs.put(PLUGIN_GIT_URL, getEnv(PLUGIN_GIT_URL, FLOW_GIT_URL));
+        envs.put(PLUGIN_GIT_WORKSPACE, getEnv(PLUGIN_GIT_WORKSPACE, HOME));
+        envs.put(PLUGIN_API, getEnv(PLUGIN_API, null));
+        envs.put(PLUGIN_GIT_PROJECT,
+            GitUtil.getGitPath(Setting.getInstance().getPluginGitUrl(), workspacePath()).toString());
+
+        if (!Objects.isNull(rsaHelper.privateKeyPath(workspacePath()))) {
+            envs.put(PLUGIN_GIT_RSA_PRI, rsaHelper.privateKeyPath(workspacePath()).toString());
+        }
+
+        if (!Objects.isNull(rsaHelper.publicKeyPath(workspacePath()))) {
+            envs.put(PLUGIN_GIT_RSA_PUB, rsaHelper.publicKeyPath(workspacePath()).toString());
+        }
+
+        setEnvs(envs);
+    }
+
     /**
      * prefer select preferred value
      * @param preferred
@@ -143,6 +179,33 @@ public class App {
         }
 
         return alternativeValue;
+    }
+
+    /**
+     * set envs to /tmp/env
+     * @param envs
+     */
+    private static void setEnvs(Map<String, String> envs) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        System.out.println("Environments: ");
+        envs.forEach((k, v) -> {
+            System.out.println("Export " + k + "=" + v);
+            stringBuilder.append("export " + k + "=" + v).append(System.lineSeparator());
+        });
+
+        try {
+
+            Path tmpFolder = Paths.get(TMP_FOLDER, "git-clone");
+            Files.createDirectories(tmpFolder);
+            Files.write(Paths.get(tmpFolder.toString(), "env"),
+                stringBuilder.toString().getBytes(Charset.forName("UTF-8")),
+                StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
