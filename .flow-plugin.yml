@@ -4,10 +4,6 @@ properties:
     type: string
     required: true
 
-  - name: PLUGIN_TOKEN
-    type: string
-    required: false
-
   - name: PLUGIN_GIT_URL
     type: string
     required: false
