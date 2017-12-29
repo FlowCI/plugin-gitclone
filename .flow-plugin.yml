@@ -21,9 +21,7 @@ image: flowci/plugin-environment:latest
 run: |
   set -e
   java -jar ./flow-git-clone.jar
-
   source /tmp/git-clone/env
-
 
 build: |
   mvn clean install -DskipTests=true
