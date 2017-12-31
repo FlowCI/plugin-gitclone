@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.Charsets;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -95,7 +96,7 @@ public class HttpClient {
 
     public HttpClient post(String body) throws UnsupportedEncodingException {
         HttpPost httpPost = new HttpPost(url);
-        HttpEntity entity = new StringEntity(body);
+        HttpEntity entity = new StringEntity(body, Charsets.UTF_8);
         httpPost.setEntity(entity);
         httpRequest = httpPost;
         return this;
