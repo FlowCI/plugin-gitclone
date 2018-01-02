@@ -27,6 +27,6 @@
 >- PLUGIN_GIT_RSA_PUB `Flow 的 公钥文件地址`
 >- PLUGIN_GIT_RSA_PRI `Flow 的 私钥文件地址`
 
->如果在下个step使用输出的环境变量 请在ENV中加上 FLOW_ENV_OUTPUT_PREFIX: PLUGIN_， 这样的话就会把PLUGIN_前缀的环境变量传递到下个step
+>如果在下个step使用输出的环境变量 请在ENV中加上 `FLOW_ENV_OUTPUT_PREFIX: PLUGIN_`， 这样的话就会把PLUGIN_前缀的环境变量传递到下个step
 ### 反馈
 > 欢迎提[Issue](https://github.com/FlowCI/plugin-gitclone/issues)
