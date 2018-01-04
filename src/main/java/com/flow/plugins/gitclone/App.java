@@ -100,7 +100,7 @@ public class App {
     }
 
     private static String rsaDownloadUrl() {
-        return Setting.getInstance().getPluginApi() + "/credentials/" + System.getenv("FLOW_NAME") + "/download";
+        return Setting.getInstance().getPluginApi() + "/credentials/" + System.getenv("FLOW_GIT_CREDENTIAL") + "/download";
     }
 
     private static Path workspacePath() {
