@@ -32,6 +32,11 @@ public class GitHelper {
         LOGGER.trace("Finish Fetch Code");
     }
 
+    public void fetchCode(String gitUrl, String user, String pass, String branch, Path targetFolder) {
+        GitUtil.gitClone(gitUrl, user, pass, branch, targetFolder, new CloneMonitor());
+        LOGGER.trace("Finish Fetch Code");
+    }
+
     private class CloneMonitor implements ProgressMonitor {
 
         @Override

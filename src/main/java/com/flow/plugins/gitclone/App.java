@@ -60,11 +60,21 @@ public class App {
 
     private final static String PLUGIN_GIT_PROJECT = "PLUGIN_GIT_PROJECT";
 
+    private final static String FLOW_GIT_SOURCE = "FLOW_GIT_SOURCE";
+
+    private final static String UNDEFINED_SSH = "UNDEFINED_SSH";
+
+    private final static String UNDEFINED_HTTP = "UNDEFINED_HTTP";
+
     private final static String HOME = "HOME";
 
     private final static String START_MESSAGE = "GIT-CLONE      START";
 
     private final static String FINISH_MESSAGE = "GIT-CLONE      FINISH";
+
+    private final static String FLOW_GIT_HTTP_USER = "FLOW_GIT_HTTP_USER";
+
+    private final static String FLOW_GIT_HTTP_PASS = "FLOW_GIT_HTTP_PASS";
 
     private final static RsaHelper rsaHelper = new RsaHelper();
 
@@ -79,19 +89,32 @@ public class App {
 
         System.out.println(CommonUtil.showJfigletMessage(START_MESSAGE));
 
-        // download rsa zip
-        rsaHelper
-            .downloadRsaAndUnzip(
-                rsaDownloadUrl(),
-                workspacePath());
+        if (Objects.equals(Setting.getInstance().getPluginGitSource(), UNDEFINED_SSH)) {
+            // download rsa zip
+            rsaHelper
+                .downloadRsaAndUnzip(
+                    rsaDownloadUrl(),
+                    workspacePath());
 
-        // git clone
-        gitHelper.fetchCode(
-            Setting.getInstance().getPluginGitUrl(),
-            rsaHelper.privateKeyPath(workspacePath()),
-            Setting.getInstance().getPluginGitBranch(),
-            workspacePath()
-        );
+            // git clone
+            gitHelper.fetchCode(
+                Setting.getInstance().getPluginGitUrl(),
+                rsaHelper.privateKeyPath(workspacePath()),
+                Setting.getInstance().getPluginGitBranch(),
+                workspacePath()
+            );
+
+        } else if (Objects.equals(Setting.getInstance().getPluginGitSource(), UNDEFINED_HTTP)) {
+            gitHelper.fetchCode(
+                Setting.getInstance().getPluginGitUrl(),
+                Setting.getInstance().getPluginGitHttpUser(),
+                Setting.getInstance().getPluginGitHttpPass(),
+                Setting.getInstance().getPluginGitBranch(),
+                workspacePath());
+        } else {
+            LOGGER.info("Git source url is not support");
+            System.exit(1);
+        }
 
         // export env
         exportEnv();
@@ -100,7 +123,8 @@ public class App {
     }
 
     private static String rsaDownloadUrl() {
-        return Setting.getInstance().getPluginApi() + "/credentials/" + System.getenv("FLOW_GIT_CREDENTIAL") + "/download";
+        return Setting.getInstance().getPluginApi() + "/credentials/" + System.getenv("FLOW_GIT_CREDENTIAL")
+            + "/download";
     }
 
     private static Path workspacePath() {
@@ -132,6 +156,12 @@ public class App {
 
         LOGGER.trace("PLUGIN_API:" + getEnv(PLUGIN_API, null));
         Setting.getInstance().setPluginApi(getEnv(PLUGIN_API, null));
+
+        Setting.getInstance().setPluginGitSource(System.getenv(FLOW_GIT_SOURCE));
+
+        Setting.getInstance().setPluginGitHttpPass(System.getenv(FLOW_GIT_HTTP_PASS));
+
+        Setting.getInstance().setPluginGitHttpUser(System.getenv(FLOW_GIT_HTTP_USER));
 
         Setting.getInstance().setPluginToken(System.getenv(PLUGIN_TOKEN));
     }

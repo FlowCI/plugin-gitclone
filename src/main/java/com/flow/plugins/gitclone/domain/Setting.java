@@ -31,6 +31,12 @@ public class Setting {
 
     private String pluginGitWorkspace;
 
+    private String pluginGitSource;
+
+    private String pluginGitHttpUser;
+
+    private String pluginGitHttpPass;
+
     private static Setting instance = new Setting();
 
     public static Setting getInstance() {
@@ -71,6 +77,30 @@ public class Setting {
 
     public String getPluginGitWorkspace() {
         return pluginGitWorkspace;
+    }
+
+    public String getPluginGitSource() {
+        return pluginGitSource;
+    }
+
+    public void setPluginGitSource(String pluginGitSource) {
+        this.pluginGitSource = pluginGitSource;
+    }
+
+    public String getPluginGitHttpUser() {
+        return pluginGitHttpUser;
+    }
+
+    public void setPluginGitHttpUser(String pluginGitHttpUser) {
+        this.pluginGitHttpUser = pluginGitHttpUser;
+    }
+
+    public String getPluginGitHttpPass() {
+        return pluginGitHttpPass;
+    }
+
+    public void setPluginGitHttpPass(String pluginGitHttpPass) {
+        this.pluginGitHttpPass = pluginGitHttpPass;
     }
 
     public void setPluginGitWorkspace(String pluginGitWorkspace) {

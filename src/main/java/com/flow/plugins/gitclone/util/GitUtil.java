@@ -27,10 +27,12 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.TransportConfigCallback;
 import org.eclipse.jgit.lib.ProgressMonitor;
 import org.eclipse.jgit.lib.StoredConfig;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.JschConfigSessionFactory;
 import org.eclipse.jgit.transport.OpenSshConfig.Host;
 import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.jgit.transport.SshTransport;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.eclipse.jgit.util.FS;
 
 /**
@@ -39,6 +41,49 @@ import org.eclipse.jgit.util.FS;
 public class GitUtil {
 
     private final static String ORIGIN = "origin";
+
+    public static Path gitClone(String gitUrl, String user, String pass, String branch, Path targetFolder,
+                                ProgressMonitor processMonitor) {
+        try {
+
+            CredentialsProvider usernameProvider = new UsernamePasswordCredentialsProvider(user, pass);
+            Path gitPath = getGitPath(gitUrl, targetFolder);
+
+            // if exists delete
+            if (gitPath.toFile().exists()) {
+                FileUtils.deleteDirectory(gitPath.toFile());
+            }
+
+            // init bare git project
+            Git.init().setDirectory(gitPath.toFile()).call();
+
+            // set remote
+            Git git = Git.open(gitPath.toFile());
+            StoredConfig config = git.getRepository().getConfig();
+            config.setString("remote", ORIGIN, "url", gitUrl);
+            config.save();
+
+            // pull code
+            git
+                .fetch()
+                .setRemote(ORIGIN)
+                .setCredentialsProvider(usernameProvider)
+                .setRefSpecs(new RefSpec("refs/heads/" + branch + ":refs/heads/" + branch))
+                .setProgressMonitor(processMonitor)
+                .call();
+
+            // checkout branch
+            git
+                .checkout()
+                .setName(branch)
+                .setForce(true)
+                .call();
+
+        } catch (Throwable e) {
+            throw new PluginException("Git clone happens some questions " + e.getMessage());
+        }
+        return targetFolder;
+    }
 
     public static Path gitClone(String gitUrl, Path privateKeyPath, String branch, Path targetFolder,
                                 ProgressMonitor processMonitor) {
