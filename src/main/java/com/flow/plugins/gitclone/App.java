@@ -229,6 +229,10 @@ public class App {
 
             Path tmpFolder = Paths.get(TMP_FOLDER, "git-clone");
             Files.createDirectories(tmpFolder);
+
+            Path filePath = Paths.get(tmpFolder.toString(), "env");
+            Files.deleteIfExists(filePath);
+
             Files.write(Paths.get(tmpFolder.toString(), "env"),
                 stringBuilder.toString().getBytes(Charset.forName("UTF-8")),
                 StandardOpenOption.WRITE, StandardOpenOption.CREATE);
