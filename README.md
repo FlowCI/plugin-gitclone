@@ -21,9 +21,9 @@
 ### 输出环境变量
 >- PLUGIN_GIT_WORKSPACE
 >- PLUGIN_GIT_PROJECT `项目的目录`
->- PLUGIN_API
->- PLUGIN_GIT_URL
->- PLUGIN_GIT_BRANCH
+>- PLUGIN_API `Flow 的 Api 地址`
+>- PLUGIN_GIT_URL `Flow 的 Git 地址`
+>- PLUGIN_GIT_BRANCH `Flow 的 Git 分支`
 >- PLUGIN_GIT_RSA_PUB `Flow 的 公钥文件地址`
 >- PLUGIN_GIT_RSA_PRI `Flow 的 私钥文件地址`
 
