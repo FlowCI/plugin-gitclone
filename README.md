@@ -13,10 +13,10 @@
 一个 Git Clone 的插件，适用于 FlowCi
 
 ### 输入参数
->- PLUGIN_API `Api的服务地址` `必填` Example: `http://127.0.0.1:8080/flow-api`
->- PLUGIN_GIT_URL `Git的克隆地址` `选填`
->- PLUGIN_GIT_BRANCH `Git的分支` `选填`
->- PLUGIN_GIT_WORKSPACE `Git的克隆的目录` `选填`
+>- PLUGIN_API `Api 的服务地址` `必填` Example: `http://127.0.0.1:8080/flow-api`
+>- PLUGIN_GIT_URL `Git 的克隆地址` `选填`
+>- PLUGIN_GIT_BRANCH `Git 的分支` `选填`
+>- PLUGIN_GIT_WORKSPACE `Git 的克隆的目录` `选填`
 
 ### 输出环境变量
 >- PLUGIN_GIT_WORKSPACE
