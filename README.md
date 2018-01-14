@@ -19,7 +19,7 @@
 >- PLUGIN_GIT_WORKSPACE `Git 的克隆的目录` `选填`
 
 ### 输出环境变量
->- PLUGIN_GIT_WORKSPACE
+>- PLUGIN_GIT_WORKSPACE `项目的 Clone 目录`
 >- PLUGIN_GIT_PROJECT `项目的目录`
 >- PLUGIN_API `Flow 的 Api 地址`
 >- PLUGIN_GIT_URL `Flow 的 Git 地址`
